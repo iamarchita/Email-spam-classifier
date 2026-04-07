@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Email Spam Detector</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<h1>Email Spam Detector</h1>
+<p class="subtitle">AI Powered Email Classification</p>
+
+<button id="openBox" class="main-btn">Analyze Your Email</button>
+
+<div id="emailBox" class="email-box">
+
+<form action="/predict" method="post">
+
+<textarea name="email" placeholder="Paste email text here..." required></textarea>
+
+<button type="submit">Analyze Email</button>
+
+</form>
+
+</div>
+
+{% if prediction_text %}
+
+<div class="result">
+{{ prediction_text }}
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("openBox").onclick = function(){
+document.getElementById("emailBox").style.display="block";
+this.style.display="none";
+}
+
+</script>
+
+</body>
+</html>
